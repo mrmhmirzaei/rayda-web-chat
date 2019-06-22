@@ -42,16 +42,31 @@
             <div id="chat-message" class="messages">
             </div>
             <div class="footer">
-                <textarea id="message-text" rows="3" onfocus="this.parentElement.classList.add('focus')" onblur="onInputBlur(this)"></textarea>
+                <p id="message-text" contenteditable="true" onfocus="this.parentElement.classList.add('focus')"
+                    onblur="onInputBlur(this)"></p>
                 <span>متن پیام شما</span>
-                <div class="emoji"></div>
+                <button class="icon" onclick="document.getElementById('emojis').classList.toggle('show')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+                        <path
+                            d="M23.99 4C12.94 4 4 12.95 4 24s8.94 20 19.99 20C35.04 44 44 35.05 44 24S35.04 4 23.99 4zM24 40c-8.84 0-16-7.16-16-16S15.16 8 24 8s16 7.16 16 16-7.16 16-16 16zm7-18c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-14 0c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm7 13c4.66 0 8.61-2.91 10.21-7H13.79c1.6 4.09 5.55 7 10.21 7z" />
+                    </svg>
+                </button>
+                <button class="icon" onclick="openImage()">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 48 48">
+                        <path
+                            d="M42 38V10c0-2.21-1.79-4-4-4H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4zM17 27l5 6.01L29 24l9 12H10l7-9z" />
+                    </svg>
+                </button>
                 <div class="submit-button" onclick="sendMessage()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 48 48">
                         <path d="M4.02 42L46 24 4.02 6 4 20l30 4-30 4z" /></svg>
                 </div>
             </div>
+            <div class="emojis" id="emojis"></div>
         </div>
     </div>
+    </div>
+    <input type="file" id="file" style="display: none;">
     <script src="./script.js"></script>
 </body>
 

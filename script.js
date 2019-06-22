@@ -27,9 +27,9 @@ function close_chat() {
  */
 function sendMessage() {
     let message = document.getElementById('message-text')
-    if ((message.value + '').length != 0) {
-        newMessage(message.value, true);
-        message.value = '';
+    if ((message.innerHTML + '').length != 0) {
+        newMessage(message.innerHTML, true);
+        message.innerText = '';
     }
 }
 
@@ -41,7 +41,7 @@ function sendMessage() {
  */
 function newMessage(text = '', isMine = false) {
     let div = document.createElement('div');
-    div.innerText = text;
+    div.innerHTML = text;
     div.classList.add('message');
     div.style.width = (text.length * 10) + 'px';
     if (isMine == true) {
@@ -58,8 +58,8 @@ function newMessage(text = '', isMine = false) {
 }
 
 function onInputBlur(self) {
-    if (self.value.length == 0) {
-        self.parentElement.classList.remove('focus');
+    if (document.getElementById('message-text').innerText.length == 0) {
+        document.getElementById('message-text').parentElement.classList.remove('focus');
     }
 }
 
@@ -67,9 +67,49 @@ function onkey(event) {
     if (event.keyCode == 13) {
         sendMessage();
         setTimeout(() => {
-            document.getElementById('message-text').value = '';
+            document.getElementById('message-text').innerText = '';
         }, 0);
     }
 }
 
-document.getElementById('message-text').addEventListener('keydown', onkey);
+function loadEmoji() {
+    let emojis = document.getElementById('emojis');
+    for (let i = 1; i <= 50; i++) {
+        let img = document.createElement('img');
+        img.src = `./emoji/${i}.svg`;
+        img.setAttribute('onclick', `selectEmoji(${i})`);
+        emojis.appendChild(img);
+    }
+}
+
+function selectEmoji(index) {
+    document.querySelector('div.footer').classList.add('focus')
+    document.getElementById('message-text').innerHTML += `<img src="./emoji/${index}.svg">`
+}
+
+/**
+ * Load Image
+ */
+function openImage() {
+    let fileElm = document.getElementById('file');
+    fileElm.click();
+    fileElm.onchange = (event) => {
+        let file = event.target.files[0];
+        if (!file) {
+            return;
+        } else {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var contents = e.target.result;
+                // BASE 64 Image Data      
+                // contents is the data :)          
+            }
+            reader.readAsDataURL(file)
+        }
+    }
+}
+
+window.onload = () => {
+    loadEmoji();
+    document.getElementById('message-text').addEventListener('keydown', onkey);
+}
