@@ -159,6 +159,11 @@ div.chat div.app div.messages div.message img {
     height: 24px;
 }
 
+div.chat div.app div.messages div.message img.image {
+    width: 160px;
+    height: auto;
+}
+
 div.chat div.app div.messages div.message:not(.me) {
     background-color: #eee;
     border-top-left-radius: 0;

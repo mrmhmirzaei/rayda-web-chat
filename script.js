@@ -102,7 +102,8 @@ function openImage() {
             reader.onload = function (e) {
                 var contents = e.target.result;
                 // BASE 64 Image Data      
-                // contents is the data :)          
+                // contents is the data :)    
+                newMessage(`<img src="${contents}" class="image">`, true)
             }
             reader.readAsDataURL(file)
         }
