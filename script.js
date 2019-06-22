@@ -45,10 +45,10 @@ function newMessage(text = '', isMine = false) {
     div.classList.add('message');
     div.style.width = (text.length * 10) + 'px';
     if (isMine == true) {
-        let marginLeft = (300 - (text.length * 10));
+        let marginLeft = (335 - (text.length * 10));
 
         if (marginLeft < 20) {
-            marginLeft = 30;
+            marginLeft = 65;
         }
         div.style.marginLeft = marginLeft + 'px';
         div.classList.add('me')

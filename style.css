@@ -25,6 +25,7 @@ div.chat div.button {
     background-color: rgb(var(--background-color));
     box-shadow: 0 2px 4px rgba(var(--background-color), .4);
     transition: all .2s;
+    animation: button .4s;
 }
 
 div.chat[mode="close"]:not(.open) div.button:hover {
@@ -48,8 +49,8 @@ div.chat.open div.button {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 350px;
-    height: 550px;
+    width: 380px;
+    height: 580px;
     border-radius: .5rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, .1);
     transition: all .3s, border-radius .2s;
@@ -62,7 +63,7 @@ div.chat[mode="splash"] div.button svg {
 }
 
 div.chat div.app {
-    width: 350px;
+    width: 380px;
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -79,7 +80,7 @@ div.chat[mode="ready"] div.app {
     position: relative;
     opacity: 1;
     pointer-events: all;
-    height: 490px;
+    height: 520px;
     border-radius: .5rem;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
@@ -141,16 +142,6 @@ div.chat div.app div.messages {
     overflow-y: scroll;
     overflow-x: hidden;
     margin-top: -30px;
-}
-
-div.chat div.app div.messages::-webkit-scrollbar {
-    width: 6px;
-    background-color: transparent;
-}
-
-div.chat div.app div.messages::-webkit-scrollbar-thumb {
-    background-color: #DADADA;
-    border-radius: 1rem;
 }
 
 div.chat div.app div.messages div.message {
@@ -260,6 +251,16 @@ div.chat div.app div.footer div.submit-button:hover svg {
     transition: all .2s;
 }
 
+div.chat *::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+div.chat *::-webkit-scrollbar-thumb {
+    background-color: #DADADA;
+    border-radius: 1rem;
+}
+
 @keyframes myMessage {
     0% {
         opacity: 0;
@@ -279,5 +280,16 @@ div.chat div.app div.footer div.submit-button:hover svg {
     100% {
         opacity: 1;
         transform: translateX(-0px)
+    }
+}
+
+@keyframes button {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
     }
 }
