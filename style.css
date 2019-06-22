@@ -1,0 +1,283 @@
+:root {
+    --background-color: 243, 69, 115;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+div.chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+div.chat div.button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgb(var(--background-color));
+    box-shadow: 0 2px 4px rgba(var(--background-color), .4);
+    transition: all .2s;
+}
+
+div.chat[mode="close"]:not(.open) div.button:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(var(--background-color), .4);
+    transition: all .2s;
+}
+
+div.chat div.button svg {
+    fill: #fff;
+}
+
+div.chat[mode="close"] div.button svg {
+    width: 30px;
+    height: 30px;
+    transition: all .3s;
+}
+
+div.chat.open div.button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 350px;
+    height: 550px;
+    border-radius: .5rem;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .1);
+    transition: all .3s, border-radius .2s;
+}
+
+div.chat[mode="splash"] div.button svg {
+    width: 85px;
+    height: 85px;
+    transition: all .3s;
+}
+
+div.chat div.app {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+div.chat:not([mode="ready"]) div.app {
+    opacity: 0;
+    height: 0;
+    pointer-events: none;
+    transition: all .3s;
+}
+
+div.chat[mode="ready"] div.app {
+    position: relative;
+    opacity: 1;
+    pointer-events: all;
+    height: 490px;
+    border-radius: .5rem;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    transition: all .3s;
+}
+
+div.chat[mode="ready"] div.app div.head {
+    position: relative;
+    top: -45px;
+    left: 15px;
+    right: 20px;
+    width: 315px;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+div.chat[mode="ready"] div.app div.head div.close-button {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    transition: all .3s;
+}
+
+div.chat div.app div.head div.close-button svg {
+    fill: #fff;
+    transition: all .3s;
+}
+
+div.chat div.app div.head div.close-button:hover svg {
+    transform: scale(1.1) rotate(20deg);
+    transition: all .3s;
+}
+
+div.chat div.app div.head div.info {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    text-align: right;
+    color: #fff;
+}
+
+div.chat div.app div.head div.info h4 {
+    margin: 0;
+}
+
+div.chat div.app div.head div.info span {
+    font-size: .8rem;
+    color: #eee;
+}
+
+div.chat div.app div.messages {
+    display: flex;
+    flex-direction: column-reverse;
+    background-image: url("data:image/png;base64,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");
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: -30px;
+}
+
+div.chat div.app div.messages::-webkit-scrollbar {
+    width: 6px;
+    background-color: transparent;
+}
+
+div.chat div.app div.messages::-webkit-scrollbar-thumb {
+    background-color: #DADADA;
+    border-radius: 1rem;
+}
+
+div.chat div.app div.messages div.message {
+    max-width: 270px;
+    border-radius: 0.8rem;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    direction: rtl;
+    font-size: .8rem;
+}
+
+div.chat div.app div.messages div.message:not(.me) {
+    background-color: #eee;
+    border-top-left-radius: 0;
+    margin-left: 10px;
+    animation: theirMessage .4s;
+}
+
+div.chat div.app div.messages div.message.me {
+    background-color: rgba(var(--background-color), .7);
+    color: #fff;
+    border-top-right-radius: 0;
+    margin-right: 10px;
+    padding-right: 15px;
+    animation: myMessage .4s;
+}
+
+div.chat div.app div.footer {
+    display: flex;
+    flex-wrap: nowrap;
+    direction: rtl;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, .05);
+    z-index: 1;
+    height: 60px;
+    transition: all .2s;
+}
+
+div.chat div.app div.footer.focus {
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, .1);
+    transition: all .3s;
+}
+
+div.chat div.app div.footer textarea {
+    border: none;
+    outline: none;
+    width: 100%;
+    resize: none;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    background-color: transparent;
+    border-radius: .5rem;
+}
+
+div.chat div.app div.footer span {
+    position: absolute;
+    right: 10px;
+    margin-top: 12px;
+    user-select: none;
+    pointer-events: none;
+    color: #777;
+}
+
+div.chat div.app div.footer:not(.focus) span {
+    opacity: 1;
+    margin-right: 0;
+    transition: all .3s;
+}
+
+div.chat div.app div.footer.focus span {
+    opacity: 0;
+    margin-right: 10px;
+    transition: all .3s;
+}
+
+div.chat div.app div.footer div.submit-button {
+    background-color: rgb(var(--background-color));
+    width: 55px;
+    height: 43px;
+    border-radius: 50%;
+    margin: 0 5px;
+    margin-left: 10px;
+    margin-top: -0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(var(--background-color), .4);
+    transition: all .3s;
+}
+
+div.chat div.app div.footer div.submit-button:hover {
+    transform: scale(1.04);
+    box-shadow: 0 3px 6px rgba(var(--background-color), .4);
+    transition: all .3s;
+}
+
+div.chat div.app div.footer div.submit-button svg {
+    fill: #fff;
+    transform: rotate(180deg);
+    transition: all .3s;
+}
+
+div.chat div.app div.footer div.submit-button:hover svg {
+    margin-right: 10px;
+    transition: all .2s;
+}
+
+@keyframes myMessage {
+    0% {
+        opacity: 0;
+        transform: translateX(50px)
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-0px)
+    }
+}
+
+@keyframes theirMessage {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px)
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-0px)
+    }
+}
