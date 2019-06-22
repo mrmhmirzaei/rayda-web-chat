@@ -22,6 +22,9 @@ function close_chat() {
     }
 }
 
+/**
+ * Send Message function
+ */
 function sendMessage() {
     let message = document.getElementById('message-text')
     if ((message.value + '').length != 0) {
@@ -30,6 +33,12 @@ function sendMessage() {
     }
 }
 
+
+/**
+ * This function show the message
+ * @param {String} text Message content
+ * @param {Boolean} isMine Who send the message
+ */
 function newMessage(text = '', isMine = false) {
     let div = document.createElement('div');
     div.innerText = text;
@@ -64,11 +73,3 @@ function onkey(event) {
 }
 
 document.getElementById('message-text').addEventListener('keydown', onkey);
-
-
-
-setTimeout(open_chat, 300);
-
-setTimeout(() => {
-    newMessage('سلام چه کمکی میتونم برای شما انجام بدهم؟')
-}, 1600)
