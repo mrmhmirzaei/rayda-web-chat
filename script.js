@@ -44,17 +44,22 @@ function newMessage(text = '', isMine = false) {
     div.innerHTML = text;
     div.classList.add('message');
     div.style.width = (text.length * 10) + 'px';
+    let width = window.screen.width < 600 ? window.screen.width - 50 : 335;
     if (isMine == true) {
-        let marginLeft = (335 - (text.length * 10));
+        let marginLeft = (width - (text.length * 10));
 
-        if (marginLeft < 20) {
+        if (marginLeft < 20 && window.screen.width >= 600) {
             marginLeft = 65;
+        }
+        if (marginLeft < 20 && window.screen.width < 600) {
+            marginLeft = 92;
         }
         div.style.marginLeft = marginLeft + 'px';
         div.classList.add('me')
     }
     let messages = document.getElementById('chat-message');
     messages.insertBefore(div, messages.children[0]);
+    document.getElementById('emojis').classList.remove('show')
 }
 
 function onInputBlur(self) {
@@ -99,7 +104,7 @@ function openImage() {
             return;
         } else {
             var reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 var contents = e.target.result;
                 // BASE 64 Image Data      
                 // contents is the data :)    
@@ -108,6 +113,10 @@ function openImage() {
             reader.readAsDataURL(file)
         }
     }
+}
+
+function setColor(rgb = "0,0,0") {
+    document.documentElement.style.setProperty('--background-color', rgb);
 }
 
 window.onload = () => {

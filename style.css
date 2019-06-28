@@ -2,6 +2,10 @@
     --background-color: 243, 69, 115;
 }
 
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
 body {
     background-color: #f3f3f3;
 }
@@ -152,6 +156,7 @@ div.chat div.app div.messages div.message {
     margin-bottom: 10px;
     direction: rtl;
     font-size: .8rem;
+    word-break: break-all;
 }
 
 div.chat div.app div.messages div.message img {
@@ -172,7 +177,7 @@ div.chat div.app div.messages div.message:not(.me) {
 }
 
 div.chat div.app div.messages div.message.me {
-    background-color: rgba(var(--background-color), .7);
+    background-color: rgba(0, 0, 0, .5);
     color: #fff;
     border-top-right-radius: 0;
     margin-right: 10px;
@@ -208,9 +213,12 @@ div.chat div.app div.footer p {
     font-size: .9rem;
     background-color: transparent;
     border-radius: .5rem;
+    max-width: 250px;
+    max-height: 35px;
+    overflow-y: auto;
 }
 
-div.chat div.app div.footer p img{
+div.chat div.app div.footer p img {
     width: 24px;
     height: 24px;
     margin: 0 2.5px;
@@ -260,8 +268,12 @@ div.chat div.app div.footer button.icon:hover svg {
 
 div.chat div.app div.footer div.submit-button {
     background-color: rgb(var(--background-color));
-    width: 67px;
+    width: 43px;
     height: 43px;
+    max-width: 43px;
+    min-width: 43px;
+    max-height: 43px;
+    min-height: 43px;
     border-radius: 50%;
     margin: 0 5px;
     margin-left: 10px;
@@ -370,5 +382,40 @@ div.chat *::-webkit-scrollbar-thumb {
     100% {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    div.chat:not([mode="close"]) {
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        width: 100vw;
+        transition: all 0s;
+    }
+    div.chat.open div.button {
+        top: 0;
+        height: 100%;
+        width: 100vw;
+        border-radius: 0;
+        transition: all 0s;
+    }
+    div.chat div.app {
+        width: 100vw;
+        transition: all 0s;
+    }
+    div.chat[mode="ready"] div.app {
+        top: 70px;
+        height: calc(100% - 70px);
+        transition: all 0s;
+    }
+    div.chat[mode="ready"] div.app div.head {
+        top: -55px;
+        transition: all 0s;
+    }
+    div.chat div.app div.footer p {
+        width: calc(100%);
+        transition: all 0s;
     }
 }
